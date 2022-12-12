@@ -1,16 +1,29 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import argparse
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def passgen():
+    parser = argparse.ArgumentParser(prog='Password generator',
+                                     description='A Simple program generating '
+                                                 'standard passwords',
+                                     epilog='Help text')
+    parser.add_argument('-a', '--ascii')
+    print(parser)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    parser = argparse.ArgumentParser(prog='Password generator',
+                                     description='Simple program generating '
+                                                 'standard passwords.')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    parser.add_argument('length', type=int, help='Length of password')
+    parser.add_argument('--foo', action='store_false')
+    parser.add_argument('-l', '--lower', help='lowercase', action='store_true')
+    parser.add_argument('-u', '--upper', help='uppercase', action='store_true')
+    parser.add_argument('-p', '--pun', help='punctuation', action='store_true')
+    parser.add_argument('-d', '--digit',
+                        help='digit password', action='store_true')
+
+    args = parser.parse_args()
+
+    print(args)
+
